@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HtmlTableCaptionMaker"
         mc:Ignorable="d"
-        Title="HtmlTableCaptionMaker" Height="475" Width="815">
+        Title="HtmlTableCaptionMaker" Height="500" Width="815">
     <Grid>
-        <Button x:Name="makeCaptionBtn" Content="캡션생성" HorizontalAlignment="Left" Margin="320,270,0,0" VerticalAlignment="Top" Click="Button_Click" Width="65"/>
-        <TextBox HorizontalAlignment="Left" Margin="30,55,0,0" TextWrapping="Wrap" Text="html을 입력하세요" VerticalAlignment="Top" Width="355" Height="204"/>
+        <TextBox x:Name="tableTitleTextBox" HorizontalAlignment="Left" Margin="30,55,0,0" TextWrapping="Wrap" Text="테이블 제목을 입력하세요" VerticalAlignment="Top" Width="355" Height="24"/>
+        <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Margin="30,87,0,0" AcceptsReturn="True" TextWrapping="Wrap" Text="html을 입력하세요" VerticalAlignment="Top" Width="355" Height="172"/>
         <TextBlock
-            x:Name="inputTextBlock"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap"
@@ -21,10 +20,10 @@
          >
             <Bold><Run Language="ko-kr" Text="테이블 html 입력"/></Bold>
         </TextBlock>
+        <Button x:Name="makeCaptionButton" Content="캡션생성" HorizontalAlignment="Left" Margin="320,270,0,0" VerticalAlignment="Top" Click="MakeCaptionButton_Click" Width="65"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="416,55,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="355" Height="204"/>
+        <TextBox x:Name="outputTextBox" HorizontalAlignment="Left" Margin="416,55,0,0" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="355" Height="204"/>
         <TextBlock
-            x:Name="outputTextBlock"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap"
@@ -36,8 +35,8 @@
             <Bold><Run Language="ko-kr" Text="생성된 caption"/></Bold>
         </TextBlock>
 
-        <StatusBar x:Name="footer" Margin="0,398,0,0"/>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Margin="0,408,0,0">
+        <StatusBar x:Name="footer" Margin="0,420,0,0"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Margin="0,432,0,0">
             <Run Text="Copyright 2025 selosele."/>
         </TextBlock>
     </Grid>
