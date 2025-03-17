@@ -35,7 +35,7 @@ public partial class MainWindow : Window
         => outputTextBox.Text = MakeCaption();
 
     /// <summary>
-    /// 캡션을 생성한다.
+    /// 캡션을 생성해서 반환한다.
     /// </summary>
     private string MakeCaption()
     {
