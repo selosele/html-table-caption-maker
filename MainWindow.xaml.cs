@@ -29,6 +29,27 @@ public partial class MainWindow : Window
     private readonly static string ERROR_MESSAGE1 = "올바른 table 구조가 아닙니다. 구조를 다시 확인하세요.";
 
     /// <summary>
+    /// 프로그램 종료 메뉴아이템을 클릭한다.
+    /// </summary>
+    private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
+
+    /// <summary>
+    /// "이 애플리케이션에 대해서" 메뉴 아이템을 클릭한다.
+    /// </summary>
+    private void AboutAppMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var message = string.Join(Environment.NewLine,
+            "이 애플리케이션은 .NET(WPF)로 개발되었습니다.",
+            "Copyright 2025 selosele.",
+            "버전 0.0.1"
+        );
+        MessageBox.Show(message, "알림");
+    }
+
+    /// <summary>
     /// 붙여넣기 버튼을 클릭한다.
     /// </summary>
     private void PasteButton_Click(object sender, RoutedEventArgs e)
