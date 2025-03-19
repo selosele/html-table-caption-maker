@@ -8,6 +8,7 @@
         Title="HtmlTableCaptionMaker" Height="500" Width="815">
     <Grid>
         <TextBox x:Name="tableTitleTextBox" HorizontalAlignment="Left" Margin="30,55,0,0" TextWrapping="Wrap" Text="테이블 제목을 입력하세요" VerticalAlignment="Top" Width="355" Height="24"/>
+        <Button x:Name="pasteButton" Content="Paste" HorizontalAlignment="Left" Margin="347,26,0,0" VerticalAlignment="Top" Click="PasteButton_Click" Width="38"/>
         <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Margin="30,87,0,0" AcceptsReturn="True" TextWrapping="Wrap" Text="html을 입력하세요" VerticalAlignment="Top" Width="355" Height="172"/>
         <TextBlock
             HorizontalAlignment="Left"
@@ -15,7 +16,7 @@
             TextWrapping="Wrap"
             Margin="30,19,0,0"
             FontSize="20"
-            Width="355"
+            Width="308"
             Height="24"
          >
             <Bold><Run Language="ko-kr" Text="테이블 html 입력"/></Bold>
@@ -29,11 +30,12 @@
             TextWrapping="Wrap"
             Margin="416,19,0,0"
             FontSize="20"
-            Width="355"
+            Width="306"
             Height="24"
          >
             <Bold><Run Language="ko-kr" Text="생성된 caption"/></Bold>
         </TextBlock>
+        <Button x:Name="CopyButton" Content="Copy" HorizontalAlignment="Left" Margin="733,26,0,0" VerticalAlignment="Top" Width="38" Click="CopyButton_Click"/>
 
         <StatusBar x:Name="footer" Margin="0,420,0,0"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Margin="0,432,0,0">

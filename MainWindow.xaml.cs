@@ -29,6 +29,15 @@ public partial class MainWindow : Window
     private readonly static string ERROR_MESSAGE1 = "올바른 table 구조가 아닙니다. 구조를 다시 확인하세요.";
 
     /// <summary>
+    /// 붙여넣기 버튼을 클릭한다.
+    /// </summary>
+    private void PasteButton_Click(object sender, RoutedEventArgs e)
+    {
+        var html = Clipboard.GetText();
+        inputTextBox.Text = html;
+    }
+
+    /// <summary>
     /// 캡션생성 버튼을 클릭한다.
     /// </summary>
     private void MakeCaptionButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +73,7 @@ public partial class MainWindow : Window
             }
         }
 
-        var outputText = "";
+        string? outputText;
         if (string.IsNullOrEmpty(tableTitleTextBox.Text))
         {
             outputText = $"<caption>{string.Join(", ", thTextList)}</caption>";
@@ -75,5 +84,13 @@ public partial class MainWindow : Window
         }
 
         return outputText;
+    }
+
+    /// <summary>
+    /// 캡션 복사 버튼을 클릭한다.
+    /// </summary>
+    private void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(outputTextBox.Text);
     }
 }
