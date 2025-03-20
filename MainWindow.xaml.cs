@@ -14,7 +14,7 @@ using HtmlAgilityPack;
 namespace HtmlTableCaptionMaker;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// 메인 윈도우(MainWindow.xaml) 클래스
 /// </summary>
 public partial class MainWindow : Window
 {
@@ -37,7 +37,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// "이 애플리케이션에 대해서" 메뉴 아이템을 클릭한다.
+    /// "이 애플리케이션에 대해서" 메뉴아이템을 클릭한다.
     /// </summary>
     private void AboutAppMenuItem_Click(object sender, RoutedEventArgs e)
     {
