@@ -46,7 +46,7 @@ public partial class MainWindow : Window
             "Copyright 2025 selosele.",
             "버전 0.0.1"
         );
-        MessageBox.Show(message, "알림");
+        MessageBox.Show(message, "정보");
     }
 
     /// <summary>
@@ -90,7 +90,9 @@ public partial class MainWindow : Window
 
             for (int j = 0; j < th.Count; j++)
             {
-                thTextList.Add(th[j].InnerText.Trim());
+                var thText = th[j].InnerText.Trim();
+                if (string.IsNullOrEmpty(thText)) continue;
+                thTextList.Add(thText);
             }
         }
 
