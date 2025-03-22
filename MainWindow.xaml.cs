@@ -24,11 +24,6 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// 오류 메시지1
-    /// </summary>
-    private readonly static string ERROR_MESSAGE1 = "올바른 table 구조가 아닙니다. 구조를 다시 확인하세요.";
-
-    /// <summary>
     /// 프로그램 종료 메뉴아이템을 클릭한다.
     /// </summary>
     private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -53,10 +48,7 @@ public partial class MainWindow : Window
     /// 붙여넣기 버튼을 클릭한다.
     /// </summary>
     private void PasteButton_Click(object sender, RoutedEventArgs e)
-    {
-        var html = Clipboard.GetText();
-        inputTextBox.Text = html;
-    }
+        => inputTextBox.Text = Clipboard.GetText();
 
     /// <summary>
     /// 캡션생성 버튼을 클릭한다.
@@ -69,44 +61,59 @@ public partial class MainWindow : Window
     /// </summary>
     private string MakeCaption()
     {
-        var html = inputTextBox.Text;
         var doc = new HtmlDocument();
-        doc.LoadHtml(html);
+        doc.LoadHtml(inputTextBox.Text);
 
         var table = doc.DocumentNode.SelectSingleNode("//table");
-        if (table == null) return ERROR_MESSAGE1;
+        if (table == null) return "<table> 태그 누락됨";
 
         var thead = table.SelectSingleNode("./thead");
-        if (thead == null) return ERROR_MESSAGE1;
+        if (thead == null) return "<thead> 태그 누락됨";
 
         var tr = thead.SelectNodes("./tr");
-        if (tr == null) return ERROR_MESSAGE1;
+        if (tr == null) return "<tr> 태그 누락됨";
 
         List<string> thTextList = [];
+        Dictionary<int, HtmlNode> thDict = [];
+
+        var thIndex = 0;
         for (int i = 0; i < tr.Count; i++)
         {
             var th = tr[i].SelectNodes("./th");
-            if (th == null) return ERROR_MESSAGE1;
+            if (th == null) return "<th> 태그 누락됨";
 
             for (int j = 0; j < th.Count; j++)
             {
-                var thText = th[j].InnerText.Trim();
-                if (string.IsNullOrEmpty(thText)) continue;
-                thTextList.Add(thText);
+                thDict[thIndex] = th[j];
+                thIndex++;
             }
         }
 
-        string? outputText;
-        if (string.IsNullOrEmpty(tableTitleTextBox.Text))
+        foreach (var x in thDict)
         {
-            outputText = $"<caption>{string.Join(", ", thTextList)}</caption>";
+            var th = x.Value;
+            var index = x.Key;
+
+            var text = th.InnerText.Trim();
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                thTextList.Add(text);
+            }
+
+            var rowspan = int.Parse(th.Attributes["rowspan"]?.Value ?? "1");
+            var colspan = int.Parse(th.Attributes["colspan"]?.Value ?? "1");
+
+            Console.WriteLine($"index: {index}, text: {text}, rowspan: {rowspan}, colspan: {colspan}");
+        }
+
+        if (string.IsNullOrWhiteSpace(tableTitleTextBox.Text))
+        {
+            return $"<caption>{string.Join(", ", thTextList)}</caption>";
         }
         else
         {
-            outputText = $"<caption>{tableTitleTextBox.Text} - {string.Join(", ", thTextList)}</caption>";
+            return $"<caption>{tableTitleTextBox.Text} - {string.Join(", ", thTextList)}</caption>";
         }
-
-        return outputText;
     }
 
     /// <summary>
